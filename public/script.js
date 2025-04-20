@@ -5,7 +5,7 @@ document.getElementById("birthday-form").addEventListener('submit', async (e) =>
   const email = document.getElementById('email').value;
   const dob = document.getElementById('dob').value;
 
-  const res = await fetch('/api/users', {
+  const res = await fetch('https://birthday-app-sandy.vercel.app/api/users', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ fullname, email, dob }),
