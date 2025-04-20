@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎂 Birthday Reminder App</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1>🎉 Never Miss a Birthday Again!</h1>
+    <img src="https://cdn.prod.website-files.com/67336b2139b6b0905c503a6b/67a3748bd1e42835aff96bb1_happy-birthday-message-for-clients.jpeg" alt="Birthday celebration" />
+    
+    <form id="birthday-form">
+      <input type="text" name="fullname" id="fullname" placeholder="Enter Name" required />
+      <input type="email" name="email" id="email" placeholder="Enter Email" required />
+      <input type="date" name="dob" id="dob" required />
+      <button type="submit">Add Birthday</button>
+    </form>
+
+    <div id="popup" class="popup hidden">
+      <div class="popup-content">
+        <p>🎉 Birthday added successfully!</p>
+        <button id="close-popup">Close</button>
+      </div>
+    </div>
+    
+    
+    <div id="message"></div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+</body>
+</html>
