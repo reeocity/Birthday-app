@@ -5,33 +5,46 @@ document.getElementById("birthday-form").addEventListener('submit', async (e) =>
   const email = document.getElementById('email').value;
   const dob = document.getElementById('dob').value;
 
-  const res = await fetch('/api/users', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ fullname, email, dob }),
-  });
+  // Use relative path for API endpoint
+  const apiUrl = '/api/users';
 
-  if (res.ok) {
-    try {
-      await res.json();
+  try {
+    const res = await fetch(apiUrl, {
+      method: 'POST',
+      headers: { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({ fullname, email, dob }),
+    });
 
-      // Show the popup
-      document.getElementById('popup').classList.remove('hidden');
+    if (res.ok) {
+      try {
+        await res.json();
 
-      // Launch confetti 🎉
-      confetti({
-        particleCount: 150,
-        spread: 70,
-        origin: { y: 0.6 },
-      });
+        // Show the popup
+        document.getElementById('popup').classList.remove('hidden');
 
-      // Reset form
-      document.getElementById("birthday-form").reset();
-    } catch (err) {
-      alert("Success, but no response message.");
+        // Launch confetti 🎉
+        confetti({
+          particleCount: 150,
+          spread: 70,
+          origin: { y: 0.6 },
+        });
+
+        // Reset form
+        document.getElementById("birthday-form").reset();
+      } catch (err) {
+        console.error('Error parsing response:', err);
+        alert("Success, but no response message.");
+      }
+    } else {
+      console.error('Server responded with status:', res.status);
+      alert("Failed to add birthday. Please try again.");
     }
-  } else {
-    alert("Failed to add birthday.");
+  } catch (error) {
+    console.error('Fetch error:', error);
+    alert("Failed to connect to server. Please try again later.");
   }
 });
 
